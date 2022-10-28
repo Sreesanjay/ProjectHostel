@@ -1,0 +1,164 @@
+<!-- landing page for common people -->
+    <!--notification-scroller-->
+    <section class="notification-scroller">
+<<<<<<<< HEAD:views/common/index.hbs
+        <marquee>
+            <div class="container" style="display:flex;">
+                {{#each announcement}}
+                <h6 class="mx-5">{{this.subject}}</h6>
+    
+                {{/each}}
+            </div>
+========
+        <marquee behavior="" direction="">
+            <h6>{{this.notification}}</h6>
+>>>>>>>> master:views/Common/index.hbs
+        </marquee>
+    
+    </section>
+    <!--img scroller-->
+    <section>
+        <!--Carousel Wrapper-->
+        <div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-2" data-slide-to="1"></li>
+                <li data-target="#carousel-example-2" data-slide-to="2"></li>
+            </ol>
+            <!--/.Indicators-->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="view">
+                        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(105).webp"
+                            alt="First slide">
+                        <div class="mask rgba-black-light"></div>
+                    </div>
+
+                </div>
+                <div class="carousel-item">
+                    <!--Mask color-->
+                    <div class="view">
+                        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(115).webp"
+                            alt="Second slide">
+                        <div class="mask rgba-black-light"></div>
+                    </div>
+
+                </div>
+                <div class="carousel-item">
+                    <!--Mask color-->
+                    <div class="view">
+                        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(108).webp"
+                            alt="Third slide">
+                        <div class="mask rgba-black-light"></div>
+                    </div>
+
+                </div>
+            </div>
+            <!--/.Slides-->
+            <!--Controls-->
+            <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            <!--/.Controls-->
+        </div>
+        <!--/.Carousel Wrapper-->
+
+    </section>
+    <!--about section-->
+    <section class="bg-light ">
+        <div class="row p-5 m-0">
+            <div class="about-text col-md-8  text-secondary ">
+                <h3 style="text-align:center;">About</h3>
+                <p class="text-secondary">
+                    What is Lorem Ipsum?
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                    scrambled it to make
+                    a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting,
+                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                    sheets containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                    including versions of
+                    Lorem Ipsum
+                </p>
+            </div>
+            <div class="about-img col-md-4 bg-secondary">
+                <h6 class="text-white m-4" style="text-align: center;">
+                    "Hodtel life<br>
+                    Messy rooms,<br>
+                    Late evening roams,<br>
+                    Midnight chats,<br>
+                    Knock of warden,<br>
+                    Kettle noodles,<br>
+                    Special in dinner <br>
+                    These things will never happen after hostel,<br>
+                    But will stay as memories forever."
+                </h6>
+
+            </div>
+        </div>
+    </section>
+
+    <!--info section -->
+    <section class="info-section p-5">
+        <div class="row m-0">
+            <div class="info-container col-md-3 col-12 mt-5">
+                <div class="card " style="max-width: 18rem;">
+                    <img class="card-img-top" src="facilities (1).png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4>Facilities</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-container col-md-3 col-12 mt-5">
+                <a href="/events">
+                <div class="card " style="max-width: 18rem;">
+                    <img class="card-img-top" src="facilities (1).png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4>Event</h4>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="info-container col-md-3 col-12 mt-5">
+                <a href="/gallery">
+                    <div class="card " style="max-width: 18rem;">
+                        <img class="card-img-top" src="facilities (1).png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4>Gallery</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="info-container col-md-3 col-12 mt-5">
+                <div class="card " style="max-width: 18rem;">
+                    <img class="card-img-top" src="facilities (1).png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4>Contact</h4>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+
+   
+
+

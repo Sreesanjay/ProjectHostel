@@ -1,0 +1,125 @@
+<!--admitted student details -->
+
+<style>
+  .userList {
+    min-height: 90vh;
+    background-color: rgb(207, 206, 206);
+  }
+
+  .userListHeader h1 {
+    color: #177caa;
+  }
+  .userListHeader form button{
+     background-color:#177caa;
+     margin-left: 0;
+     width: 5em;
+     color: white;
+     
+     margin-left: 5em;
+
+   
+  }
+
+ 
+
+  .userList td {
+
+    color: black;
+  }
+
+  .userList button {
+    color: black;
+    width: 90%;
+    background-color:rgb(207, 206, 206);
+    border: none;
+  }
+  .userList button:hover{
+    background-color:#177caa;
+    color: white;
+  }
+  .userList table ,tr{
+    border-top: 2px solid black;
+    height: 3em;
+  }
+  .userList td {
+    border: 0;
+  }
+ 
+
+</style>
+
+<section class="userList pb-4">
+
+  <div class="userListHeader py-4">
+    <form >
+   <button type="submit" formaction="/admin/userInfo" formmethod="get">Go back?</button>
+  </form>
+
+    <h1 align="center">Student Deatils </h1>
+
+  </div>
+  <table border="" style="margin-left: 14vw;">
+    <div class="row">
+      <tr class="bg-info" >
+        <td style="width:40vw;">Name</td>
+        <td style="width:30vw;">Department</td>
+        
+      </tr>
+    </div>
+
+    {{#each userData}}
+    {{#if userData.AdmissionStatus }}
+    {{else}}
+    <tr>
+
+     <td>Name</td>
+      <td>{{this.Name}}</td>
+    </tr>
+      <tr>
+     <td>AdmissionNo</td>
+      <td>{{this.AdmissionNo}}</td>
+    </tr>
+      <tr>
+     <td>Department</td>
+      <td>{{this.Department}}</td>
+    </tr>
+      <tr>
+     <td>Local guardian</td>
+      <td>{{this.LocalGuardian}}</td>
+    </tr>
+      <tr>
+     <td>Place</td>
+      <td>{{this.Place}}</td>
+    </tr>
+      <tr>
+     <td>Distance</td>
+      <td>{{this.Distance}}</td>
+    </tr>
+      <tr>
+     <td>Travelling time</td>
+      <td>{{this.TravellingTime}}</td>
+    </tr>
+      <tr>
+     <td>Address</td>
+      <td>{{this.Address}}</td>
+    </tr>
+      <tr>
+     <td>Pin code</td>
+      <td>{{this.Pincode}}</td>
+    </tr>
+      <tr>
+     <td>Phone</td>
+      <td>{{this.Phone}}</td>
+    </tr>
+      <tr>
+     <td>Email address</td>
+      <td>{{this.eMail}}</td>
+    </tr>
+    <td>Guardians phone</td>
+      <td>{{this.GuardianPhone}}</td>
+    </tr>
+    </tr>
+    {{/if}}
+    {{/each}}
+  </table>
+</section>

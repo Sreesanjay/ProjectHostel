@@ -1,0 +1,169 @@
+:root{
+  --primary-background:#177CAA;
+  --secondary-background:#0A4B69;
+  --primary-text:#FFFFFF;
+  --secondary-text:#000000;
+}
+/*reser*/
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: whitesmoke;
+  
+}
+header {
+  background-color:var(--primary-background);
+  
+  
+}
+header .row{
+  margin-right: 0;
+}
+
+.logo{
+display: flex;
+align-items: center;
+}
+.logo .logo-img img{
+  height: 10vh;
+}
+
+header nav img{
+  height:6vh ;
+}
+.logo .logo-text{
+  padding-left:1em ;
+}
+header nav a{
+  color: whitesmoke;
+}
+header nav .profile-container
+{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+header nav .profile{
+  cursor: pointer;
+  width:3em;
+  height: auto;
+}
+header nav .profile-info{
+  margin: 0;
+  width: 20em;
+  text-align:center;
+  background-color: var(--secondary-background);
+  display: none;
+  
+  
+}
+header nav .profile-info h4{
+  
+  padding: .5em;
+}
+header nav .profile-info .line{
+  height: .3em;
+  width: 100%;
+  background-color:  var(--primary-background);
+}
+header nav .profile-info button {
+  margin:1em;
+  width:40%;
+  height:2em;
+  background-color: var(--primary-background);
+  border: none;
+  border-radius: 40px;
+}
+.notification-scroller{
+  background-color: var(--secondary-background);
+  padding-top:.5em;
+}
+section .img-scroller {
+  width:100%;
+  padding: 0;
+  margin: 0;
+}
+.info-section .card{
+  display: flex;
+  align-items: center;
+  margin: 0;
+  background-color: var(--primary-background);
+  border-radius: 24px;
+}
+.info-section img{
+  width:50%;
+  margin: 3em 0;
+}
+.info-section .card-body{
+  background: var(--secondary-background);
+  width: 100%;
+  text-align: center;
+  border-radius: 24px;
+}
+
+.footer_section{
+  width: 100%;
+  float: left;
+  background-color: #1c1c1c;
+  height: auto;
+  padding-bottom: 60px;
+}
+.social_icon {
+ width: 23%;
+ margin: 2em auto;
+ text-align: center;
+}
+.social_icon img{
+  width: 2em;
+}
+
+
+
+
+.social_icon li{
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.lorem_ipsum_text{
+  width: 100%;
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  margin-left: 0px;
+  color: #cdcccd;
+  padding-top: 30px;
+}
+
+.copyright_section {
+ width: 100%;
+ float: left;
+ background-color: #fdfdfe;
+ height: auto;
+}
+
+.copyright_text {
+ width: 100%;
+ float: left;
+ font-size: 16px;
+ color: #292929;
+ text-align: center;
+ margin-left: 0px;
+}
+.copyright_text a {
+ color: #292929;
+}
+
+.sign-in a{
+ color: white;
+  
+}
+.sign-in a:hover{
+  color: #177CAA;
+}
+.sign-up p,label{
+   color:black;
+}

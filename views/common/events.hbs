@@ -1,0 +1,49 @@
+<!-- event page-->
+<style>
+    .event-header b {
+        color: rgb(23 124 170);
+    }
+    .events-container {
+        background-color: rgb(207, 206, 206);
+        
+
+    }
+    .card-container .card-body{
+        background-color:#177caa;
+    }
+    .card-container h4 {
+        color: white;
+    }
+
+    .card-container img {
+        height: 15em;
+       
+    }
+</style>
+<div class="event-header">
+    <h1 class="text-center my-5 text-danger"><b>EVENTS</b></h1>
+</div>
+<section class="events-container p-3">
+    <div class="container">
+        
+        <!-- Gallery -->
+        <div class="row mx-0">
+            {{#each events}}
+
+            <div class="card-container col-md-3 col-12 mt-5">
+
+                <a href="/admin/eventDescription">
+                    <div class="card " style="max-width: 18rem;">
+                        <img class="card-img-top " src="/EventImages/{{this._id}}.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 align="center">{{this.subject}}</h4>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+            {{/each}}
+        </div>
+        <!-- Gallery -->
+    </div>
+</section>

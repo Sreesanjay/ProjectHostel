@@ -1,0 +1,78 @@
+<!--admitted student details -->
+
+<style>
+  .userList {
+    min-height: 90vh;
+    background-color: rgb(207, 206, 206);
+  }
+
+  .userListHeader h1 {
+    color: #0a4b69;
+  }
+
+ 
+
+  .userList td {
+
+    color: black;
+  }
+
+  .userList button {
+    color: black;
+    width: 90%;
+    background-color:rgb(207, 206, 206);
+    border: none;
+  }
+  .userList button:hover{
+    background-color:#0a4b69;
+    color: white;
+  }
+  .userList table ,tr{
+    border-top: 2px solid black;
+    height: 3em;
+  }
+  .userList td {
+    border: 0;
+  }
+ 
+
+</style>
+
+<section class="userList">
+
+
+  <div class="userListHeader py-4">
+    
+    <h1 align="center">Student details</h1>
+  </div>
+  <table border="" style="margin-left: 10vw;" >
+    <div class="row">
+      <tr class="bg-info" >
+        <td style="width:40vw;">Name</td>
+        <td style="width:30vw;">Department</td>
+        <td style="width:10vw;"></td>
+        
+      </tr>
+    </div>
+
+    {{#each userData}}
+    {{#if userData.AdmissionStatus }}
+    {{else}}
+    <tr>
+
+      <td>{{this.Name}}</td>
+      <td>{{this.Department}}</td>
+
+      <form>
+        <td><button formaction="/admin/userDetails" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
+            name="adNo">View more</button></td>
+        
+
+      </form>
+
+
+    </tr>
+    {{/if}}
+    {{/each}}
+  </table>
+</section>

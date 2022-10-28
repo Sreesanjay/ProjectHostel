@@ -1,0 +1,75 @@
+<!--student admission list for verification -->
+
+<style>
+  .admissionList {
+    min-height: 90vh;
+    background-color: rgb(207, 206, 206);
+  }
+
+  .admissionListHeader h1 {
+    color: #0a4b69;
+  }
+
+ 
+
+  .admissionList td {
+
+    color: black;
+  }
+
+  .admissionList button {
+    color: black;
+    width: 90%;
+  }
+  .admissionList table tr{
+    border-top: 2px solid black;
+    height: 3em;
+  }
+  .admissionList td {
+    border: 0;
+  }
+ 
+
+</style>
+
+<section class="admissionList">
+
+  <div class="admissionListHeader py-4">
+    <h1 align="center">Admission List</h1>
+  </div>
+  <table border="" style="margin-left: 5vw;">
+    <div class="row">
+      <tr class="bg-info" >
+        <td style="width:40vw;">Name</td>
+        <td style="width:30vw;">Department</td>
+        <td style="width:10vw;"></td>
+        <td style="width:10vw;"></td>
+      </tr>
+    </div>
+
+    {{#each userData}}
+    {{#if userData.AdmissionStatus }}
+    <tr>
+      <td>admission true</td>
+    </tr>
+    {{else}}
+    <tr>
+
+      <td>{{this.Name}}</td>
+      <td>{{this.Department}}</td>
+
+      <form>
+        <td><button formaction="/admin/userInfo" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
+            name="adNo">View more</button></td>
+
+        <td><button formaction="/admin/admitStudent" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
+            name="adNo">Admit</button></td>
+
+      </form>
+
+
+    </tr>
+    {{/if}}
+    {{/each}}
+  </table>
+</section>

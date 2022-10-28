@@ -1,0 +1,171 @@
+<!--admission form by student -->
+    <!--form style-->
+    <style>
+         .row{
+            margin: 0;
+        }
+        form .left-section {
+            background-color:white;
+            border-radius: 10px;
+            color:black;
+           
+        }
+        form .left-section label{
+            color: black;
+            margin-top:2em;
+            
+        }
+     
+
+        form .left-section input{
+            border:none;
+            border-bottom: 2px solid #17a2b8;
+            background-color:#ffffff;
+            width: 90%;
+            color: black;
+        }
+
+           form .right-section
+        {
+            background-color:#17a2b8;
+            color: white;
+            
+        }
+
+        form .right-section input{
+            border:none;
+            border-bottom: 2px solid #ffffff;
+            background-color:#17a2b8;
+            width: 90%;
+            color: rgb(253, 253, 253);
+        }
+
+        form .right-section label{
+            margin-top: 2em;
+        }
+        form .right-section textarea{
+            width:90%;
+            border: 2px solid white;
+            height: 6em;
+            background-color:#17a2b8;
+            color: white;
+        }
+        .row{
+            margin: 0;
+        }
+        .form-container{
+            background-color:#ffffff;
+        }
+        form{
+            border: 5px solid #17a2b8;
+            border-radius: 10px;
+          
+        }
+       .form-container h2{
+            color: black;
+        }
+
+        form .right-section button{
+            width: 8em;
+            background-color:#17a2b8;
+            border: 2px solid white;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        .button-container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+        }
+        
+
+    </style>
+    <section class=" form-container">
+        <div class="heading text-center my-4">
+            <h2>Admission Form</h2>
+        </div>
+            <form action="/admin/admissionForm" method="post" class="mx-md-5 mb-5" enctype="multipart/form-data">
+                <div class="row">
+                <div class="left-section col-md-6 col-12 my-4">
+
+                    <h3 class="my-5">General Information</h3>
+                    <div class="left-form">
+                    
+                    <label for="Name">Name</label>
+                    <br>
+                    <input type="text" name="Name" required="required">
+                    <br>
+
+                    <label for="Admission-no">Admission No</label>
+                    <br>
+                    <input type="text" name="AdmissionNo"  required="required">
+                    <br>
+
+                    <label for="Department">Department</label>
+                    <br>
+                    <input type="text" name="Department"  required="required">
+                    <br>
+
+                    <label for="Local-guardian">Local Guardian</label>
+                    <br>
+                    <input type="text" name="LocalGuardian"  required="required">
+                    <br>
+
+                    <label for="Place">Place</label>
+                    <br>
+                    <input type="text" name="Place"  required="required">
+                    <br>
+
+                    <label for="Distance">Distance (km)</label>
+                    <br>
+                    <input type="text" name="Distance"  required="required">
+                    <br>
+
+                    <label for="Travelling-time">Travelling time</label>
+                    <br>
+                    <input type="text" name="TravellingTime"  required="required">
+                    <br>
+                    </div>
+
+                </div>
+                <div class="right-section col-md-6 col-12 py-4">
+                    <h3 class="my-5">Contact Information</h3>
+                    
+
+                    <label for="address">Address</label>
+                    <br>
+                    <textarea rows="4" cols="50" name="Address" form="usrform"  required="required"></textarea>
+                    <br>
+                    <label for="Pin-code">Pin code</label>
+                    <br>
+                    <input type="text" name="Pincode"  required="required">
+                    <br>
+
+                    <label for="Phone">Phone</label>
+                    <br>
+                    <input type="text" name="Phone"  required="required">
+                    <br>
+
+                    <label for="e-mail">Email</label>
+                    <br>
+                    <input type="email" name="eMail"  required="required">
+                    <br>
+
+                    <label for="guardian-phone">Guardian phone</label>
+                    <br>
+                    <input type="text" name="GuardianPhone"  required="required">
+                    <br>
+
+                    <div class="button-container">
+                    <button type="submit" class="mt-5 py-2 ">Submit</button>
+                    </div>
+
+                </div>
+                </div>
+            </form>
+        
+    </section>
+
+
+

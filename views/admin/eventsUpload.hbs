@@ -1,0 +1,36 @@
+<!-- event upload by admin -->
+<style>
+    form label{
+        color: black;
+    }
+    .announcement{
+        margin-bottom: 8em;
+    }
+</style>
+
+<section class="p-5 announcement">
+    <form action="/admin/eventUpload" method="post" class="my-5" enctype="multipart/form-data">
+  <!-- Subject input -->
+  <div class="form-outline mb-4">
+    <input type="text" id="form4Example1" class="form-control" name="subject" required="required"/>
+    <label class="form-label" for="form4Example1">Subject</label>
+  </div>
+
+  <!-- Description input -->
+  <div class="form-outline mb-4">
+    <textarea class="form-control" id="form4Example3" rows="4" name="description" required="required"></textarea>
+    <label class="form-label" for="form4Example3">Description</label>
+  </div>
+
+    <!-- Thumbnile input -->
+ <div class="mb-3">
+        <label for="formFile" class="form-label">Choose the thumbnile</label>
+        <input class="form-control" type="file" id="formFile" name="Image" multiple>
+    </div>
+
+  
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block " style="width:100px;">Send</button>
+</form>
+</section>
