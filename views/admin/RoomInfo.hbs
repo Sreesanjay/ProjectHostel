@@ -1,0 +1,35 @@
+<section class="room-info">
+
+    <div class="room-info-header py-3">
+        <h2 align="center">Room Info</h2>
+    </div>
+
+   <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Room No</th>
+      <th scope="col">Floor No</th>
+      <th scope="col">Available Rooms</th>
+      <th scope="col">Admit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <form action="/admin/AdmitStudent" method="post">
+      <th scope="row" value="R1" name="RoomNo">R1</th>
+      <td name="FloorNo">F1</td>
+      {{#each RoomInfo}}
+      {{#ifEquels this.RoomNo "R1"}}
+      <td>{{this.AvailableRooms}}hh</td>
+      {{/ifEquels}}
+      {{/each}}
+      <td>
+        
+        <button id="RoomAdmitBtn" >Admit</button>
+        </form>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+</section>

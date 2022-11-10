@@ -3,17 +3,20 @@ var router = express.Router();
 var adminHelper=require('../helper/adminHelper')
 var commonHelper=require('../helper/commonHelper')
 
-<<<<<<< HEAD
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-commonHelper.getAnnouncement().then((announcement) => {
-  res.render('common/index', {admin:false,announcement });
- })
-
- 
-    
+  let user=req.session.user
+  let loginStatus=req.session.logedIn
+  let userId=req.session.userId;
+  commonHelper.getAnnouncement().then((announcement) => {
+  res.render('common/index', {admin:false,announcement,user,loginStatus,userId});
+ })  
 });
+
+//receive get request for admit mail
+router.get('/mail',(req,res)=>{
+res.render('Student/mail')
+})
 
 
 //to redirect to home page
@@ -24,63 +27,83 @@ router.get('/redirecToHome',(req, res, next) => {
 //request for gallery
 router.get('/gallery', function(req, res, next) {
 
+  let user=req.session.user
+  let loginStatus=req.session.logedIn
+  let userId=req.session.userId;
+
   commonHelper.getImageGallery().then((imageGallery) => {
-    res.render('common/gallery', { imageGallery,title: 'Boys hostel' });
+    res.render('common/gallery', { imageGallery,title: 'Boys hostel' ,user,loginStatus,userId});
 })
 
 });
 
 //request for login page
 
-router.get('/login-page', function(req, res, next) {
- 
-  res.render('common/login-page', { title: 'Login' });
+router.get('/login', function(req, res, next) {
+
+  
+  let user=req.session.user
+  let loginStatus=req.session.logedIn
+  let userId=req.session.userId;
+
+  let err= req.session.err
+  if(req.session.logedIn){
+  res.redirect('/')
+  }
+  else{
+    res.render('common/login-page',{err,user,loginStatus,userId});
+  }
 });
 //request for signup  page
 
 router.get('/signup',(req, res, next) => {
-  res.render('common/signup')
+  let user=req.session.user
+  let loginStatus=req.session.logedIn
+  let userId=req.session.userId;
+  res.render('common/signup',{user,loginStatus,userId})
 
 })
 
-//request for admission form
 
-
-router.get('/admission-form', function(req, res, next) {
-  res.render('common/admission-form', { title: 'admission-form' });
-});
-=======
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-
-//   notification="Admission Started";
-//   res.render('Common/index', { commonUser:true,title: 'Boys hostel',notification });
-// });
-
-// router.get('/gallery', function(req, res, next) {
-//   res.render('Common/gallery', { commonUser:true,title: 'Gallery' });
-// });
-
-// router.get('/login-page', function(req, res, next) {
-//   res.render('Common/login-page', {commonUser:true, title: 'Login' });
-// });
->>>>>>> master
-
-// router.get('/admission-form', function(req, res, next) {
-//   res.render('Common/admission-form', {commonUser:true, title: 'admission-form' });
-// });
-
-//  router.post('/login', function(req, res) {
-//    console.log('request got')
-//  })
+//request for admission-form
+ router.get('/admission-form', function(req, res, next) {
+  let user=req.session.user
+  let loginStatus=req.session.logedIn
+  let userId=req.session.userId;
+   res.render('Common/admission-form', {commonUser:true, title: 'admission-form' ,user,loginStatus,userId});
+ });
 
 //request for event
 router.get('/events',(req,res)=>{
 
   commonHelper.getEvents().then((events) => {
     
-    res.render('common/events', { events,title: 'Boys hostel' });
+    let user=req.session.user
+    let loginStatus=req.session.logedIn
+    let userId=req.session.userId;
+
+    res.render('common/events', {common:true, events,title: 'Boys hostel' ,user,loginStatus,userId});
 })
+})
+
+
+
+ //getting admission form
+
+ router.post('/admissionForm',(req,res)=>{
+  commonHelper.storeAdmissionDetails(req.body).then((insertId )=> {
+    console.log(insertId);
+    let image=req.files.userImage;
+    image.mv('./public/UserImages/'+insertId+'.jpg',(err,done)=>{
+         if(!err){
+          res.render('common/index')
+         }else{
+              console.log(err);
+         }
+     
+     
+  })
+});
 })
 
 
@@ -89,8 +112,9 @@ router.post('/signup',(req, res)=>{
   
  commonHelper.getUserInfoByEmail(req.body.eMail).then((userInfo) => {
    console.log("user got")
-   commonHelper.updatePassword(req.body.Password,userInfo.AdmissionNo).then(()=>{
+   commonHelper.updatePassword(req.body,userInfo).then(()=>{
     console.log("password updated")
+    res.redirect('/login')
    })
  }).catch((error) => {
   console.log(error)
@@ -102,19 +126,36 @@ router.post('/signup',(req, res)=>{
 //post request for login
 
 router.post('/login',(req,res)=>{
-
-  adminHelper.getAdmissionList().then((userList) => {
-    
-    for(let i=0;i<userList.length;i++) {
-      if(userList[i].AdmissionStatus){
-      if(req.body.email === userList[i].eMail&&req.body.password === userList[i].password){
-
-        res.render('common/index', {title: 'Boys hostel' });
-      }
-    }
+  
+  if(req.session.logedIn){
+    res.redirect('/')
   }
+  else{
+commonHelper.doLogin(req.body).then((response)=>{
+  
+  if(response.status){
+    req.session.logedIn=true;
+    req.session.user=response.user;
+    req.session.userId=response.user._id;
     
+    res.redirect('/')
+  }
+  else{
+    req.session.status=response.status;
+    req.session.err=response.err;
+    res.redirect('/login')
+  }
 })
+   
+} 
+});
+
+//request for logout
+router.get('/logout',(req,res)=>{
+  console.log("user logged out")
+  req.session.destroy()
+  res.redirect('/')
+
 })
 
 

@@ -8,34 +8,35 @@
                 class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 bg-info p-5" style="border-radius: 5px;">
-<<<<<<<< HEAD:views/common/login-page.hbs
+
               <form action="/login" method="POST" enctype="multipart/form-data">
-========
+
               <form action="/login" method="post">
->>>>>>>> master:views/Common/login-page.hbs
+
                 <div class="d-flex flex-row align-items-center justify-content-center justify-content-center my-5">
                   <h1 class="lead fw-normal text-white">Sign in </h1>
                 </div>
-      
+              {{#if err}}
+              <div class="LogginErr mb-3 bg-info">
+                <h5 class="text-danger">
+                  {{err}}
+                </h5>
+              </div>
+              
+              {{/if}}
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <input type="email" id="form3Example3" class="form-control form-control-lg"
-<<<<<<<< HEAD:views/common/login-page.hbs
-                    placeholder="Enter a valid email address" name="email" />
-========
-                  placeholder="Enter a valid email address"  name="email"/>
->>>>>>>> master:views/Common/login-page.hbs
+
+                    placeholder="Enter a valid email address" name="eMail" />
                   <label class="form-label" for="form3Example3">Email address</label>
                 </div>
       
                 <!-- Password input -->
                 <div class="form-outline mb-3">
                   <input type="password" id="form3Example4" class="form-control form-control-lg"
-<<<<<<<< HEAD:views/common/login-page.hbs
-                    placeholder="Enter password" name="password" />
-========
-                    placeholder="Enter password" name="password"/>
->>>>>>>> master:views/Common/login-page.hbs
+
+                    placeholder="Enter password" name="Password" />
                   <label class="form-label" for="form3Example4">Password</label>
                 </div>
                 <div class="create-account my-2">

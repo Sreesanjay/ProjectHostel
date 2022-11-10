@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< HEAD
+
 var adminHelper=require('../helper/adminHelper')
 
 /* GET users listing. */
 router.get('/',(req,res)=>{
     
   adminHelper.getUserInfo().then((userData)=> {
-    console.log(userData)
+    console.log('userData passed')
     res.render('admin/userInfo',{userData,admin:true})
 
   })
@@ -38,22 +38,21 @@ router.get('/eventDescription', function(req, res, next) {
   res.render('admin/eventDescription',{admin:true})
 });
 
-//retriving admission list
+//retriving admission list for admin
 
 router.get('/admissionList', function(req, res, next) {
   adminHelper.getAdmissionList().then((userData) => {
     console.log(userData);
-    res.render('admin/admissionList', { userData,title: 'Boys hostel' });
+    res.render('admin/admissionList', {userData,admin:true,title: 'Boys hostel' });
 })
   
 });
 
-//request for grtting admission list full view of a person
+//request for getting admission list full view of a person
  router.post('/userInfo', function(req, res, next) {
  
    console.log(req.body.adNo)
-   adminHelper.  getUserInfoByAdmissionNo(req.body.adNo).then((userData) => {
-    console.log(userData);
+   adminHelper.getUserInfoByAdmissionNo(req.body.adNo).then((userData) => {
     res.render('admin/admissionListFullDetails', {userData,title: 'Boys hostel' });
   })
   
@@ -64,7 +63,6 @@ router.get('/admissionList', function(req, res, next) {
   
     
   adminHelper.getUserInfoByAdmissionNo(req.body.adNo).then((userData)=> {
-    console.log(userData)
     res.render('admin/UserDetails',{userData})
 
   })
@@ -120,41 +118,48 @@ router.post('/imgUpload', function(req, res){
     });
 
   })
-  //getting admission form
+  
+//request for room info for admitting students
 
-  router.post('/admissionForm',(req,res)=>{
-    
-    adminHelper.storeAdmissionDetails(req.body).then(data => {
-      console.log(data)
-       
-       res.render('common/index')
-    })
-  });
-
+router.post('/viewRoomInfo',(req,res)=>{
+  req.session.admissionNumber=req.body.adNo;
+  adminHelper.getRoomInfo().then((RoomInfo)=>{
+  res.render('admin/RoomInfo',{admin:true,RoomInfo,title: 'Boys hostel' })
+  })
+})
 
   // getting admit request
 
 
 router.post('/admitStudent', function(req, res){
- 
-  adminHelper.getUserInfoByAdmissionNo(req.body.adNo).then((userInfo)=>{
-    console.log(userInfo)
-    let department=userInfo.department;
-    let admissionNo=userInfo.AdmissionNo;
-  })
-  console.log("password created")
 
-  adminHelper.admissionStatusUpdate(req.body.adNo,callback=(data)=>{
+  adminHelper.updateRoomInfo(req.body.RoomNo).then((status)=>{
+    if(status){
+      console.log("room info updated")
+
+    adminHelper.admissionStatusUpdate( req.session.admissionNumber,req.body.RoomNo,).then((message)=>{
     
-    console.log(data)
-    
-    
- })
+      adminHelper.getAdmissionList().then((userData) => {
+        req.session.admissionNumber.destroy();
+        res.render('admin/admissionList', {userData,admin:true,title: 'Boys hostel' });
+    })
+      
+      
+   })
+  }
+
+  }).catch((message) => {
+    adminHelper.getAdmissionList().then((userData) => {
+    res.render('admin/admissionList', {msg:true,message,userData,admin:true,title: 'Boys hostel' });
+    })
+
+  })
+ 
   
   })
 
 
-=======
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -178,6 +183,41 @@ router.get('/admission-form', function(req, res, next) {
  router.post('/login', function(req, res) {
    console.log('request got')
  })
->>>>>>> master
+
+
+ router.get('/Rooms',(req,res)=>{
+  adminHelper.getRoomInfo().then((roomInfo)=>{
+    console.log("room info is "+roomInfo)
+    res.render('admin/rooms',{admin:true,roomInfo})
+  }).catch((error)=>{
+    res.render('admin/createRoomErr',{admin:true})
+  })
+  
+ })
+
+
+//creating room
+ router.get('/createRoom',(req,res)=>{
+  
+  console.log("helloo")
+  res.render('admin/createRoom',{admin:true})
+ })
+
+ router.post('/createRoom',(req,res)=>{
+  adminHelper.createRoomInfo(req.body).then((message)=>{
+    res.redirect('/admin/createRoom')
+  }).catch((error)=>{
+    res.redirect('/admin/createRoom')
+  })
+ })
+
+ router.post('/roomGeneralInfo',(req,res)=>{
+  adminHelper.UpdateGeneralInfo(req.body).then((message)=>{
+    res.redirect('/admin/createRoom')
+  }).catch((error)=>{
+    res.redirect('/admin/createRoom')
+  })
+ })
+
 
 module.exports = router;

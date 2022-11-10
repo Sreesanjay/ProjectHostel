@@ -28,13 +28,27 @@
   .admissionList td {
     border: 0;
   }
- 
+  .message{
+    width: 100%;
+    opacity: 0.8;
+   
+  }
+  .message p{
+    font-size:3em;
+     color: rgb(252, 251, 251);
+    
+  }
+
 
 </style>
 
 <section class="admissionList">
-
-  <div class="admissionListHeader py-4">
+  <div class="admissionListHeader py-2">
+    <div class="message alert alert-danger" role="alert" mb-2 bg-info">
+      {{#if msg}}
+     <p class="py-3" align="center">{{message}}</p>
+      {{/if}}
+  </div>
     <h1 align="center">Admission List</h1>
   </div>
   <table border="" style="margin-left: 5vw;">
@@ -62,7 +76,7 @@
         <td><button formaction="/admin/userInfo" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
             name="adNo">View more</button></td>
 
-        <td><button formaction="/admin/admitStudent" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
+        <td><button formaction="/admin/viewRoomInfo" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
             name="adNo">Admit</button></td>
 
       </form>

@@ -1,0 +1,131 @@
+/*style for rooms*/
+
+.room-section .card-container .card{
+    background-color: var(--secondary-background);
+    width:8em;
+}
+.room-section .card-body{
+
+}
+
+
+
+/* room info style */
+
+
+.room-info h2,th,td{
+    color:rgb(24, 24, 26);
+}
+
+/*rooms style */
+.room-header select,option{
+    color: var(--secondary-text);;
+}
+.room-header .header{
+    background-color: var(--secondary-background);
+}
+.room-header .row{
+    margin: 0;
+    padding: 0;
+}
+
+/* style for createRoomErr */
+.roomErr{
+    height:80vh;
+    padding-top:10em;
+}
+.roomErr h1{
+ color: black;
+ font-size:4em;
+    
+}
+.roomErr button{
+    min-width: 7em;
+    height: 3em;
+    background-color: var(--primary-background);
+    border: none;
+    border-radius:10px;
+}
+
+
+.roomErr .row{
+    margin: 0;
+}
+
+
+
+/* createRoom style */
+.createRoom .container{
+    background-color:rgb(234, 230, 230);
+}
+
+.createRoom .row {
+    margin: 0;
+}
+
+.createRoom .create-room-header{
+    background-color:white;
+}
+.createRoom .create-room-header h5{
+    color: black;
+}
+.room-info-header-container{
+    background-color: var(--secondary-background)
+}
+
+.createRoom .general-info{
+    width: 100%;
+}
+.createRoom .general-info-container{
+    display: none;
+
+}
+
+.createRoom select,option{
+    color: rgb(1, 1, 1);
+}
+.createRoom .General-info-submit-container{
+    
+    display: flex;
+    justify-content:center;
+    display:none; 
+} 
+.createRoom .General-info-submit {
+   
+    background-color:var(--primary-background);
+    width: 100%;
+
+}
+.createRoom .btn-container{
+    display: flex;
+    justify-content:center;
+
+}
+.createRoom .btn-container .btn-space{
+ display: flex;
+
+}
+.createRoom .btn-container button{
+    max-width:9em;
+    min-width: 5em;
+
+}
+
+
+.createRoom .row,.createRoom-container,form{
+ width: 100%;
+}
+
+.create-room-submit-container{
+    
+    display: flex;
+    justify-content:center;
+    display:none; 
+} 
+.createRoom .Room-info-submit {
+   
+    background-color:var(--primary-background);
+    width: 100%;
+
+}
+

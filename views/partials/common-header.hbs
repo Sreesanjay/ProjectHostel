@@ -34,7 +34,12 @@
                             </li>
                             <li>
                                 <div class="profile-container ml-1">
+                                    {{#if user}}
+                                    <div class="profileImg"> <img src="/userImages/{{userId}}.jpg" class="profile pb-1"></div>
+                                    
+                                    {{else}}
                                     <img src="https://drive.google.com/uc?id=12Ox0zaIOWNT63eHsmdG9Ut3ruBrCIwyM  " class="profile pb-1">
+                                    {{/if}}
                                     <div class="profile-info pt-3">
                                         <h5>Name</h6>
                                         <h6>E-mail</h6>
@@ -43,12 +48,18 @@
                                         <div class="line">
 
                                         </div>
-                                        <a href="/login-page">
-                                            <button class="login">
-                                                Login
-                                            </button>
-                                        </a>
-
+                                        <div class="loginLogout">
+                                            
+                                                {{#if user}}
+                                                
+                                                <a href="/logout" class="logout"><input type="submit" value="Logout" class="bg-info"/></a>
+                                                
+                                                {{else}}
+                                                
+                                               <a href="/login" class="login"><input type="submit" value="Login" class="bg-info"/></a>
+                                    
+                                                {{/if}}
+                                        </div>
 
                                     </div>
                                 </div>

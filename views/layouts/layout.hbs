@@ -2,106 +2,148 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!-- CSS bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/style2.css' />
+  <!-- CSS bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
 
-<<<<<<< HEAD
-{{#if admin}}
-{{>admin-header}}
+  {{#if admin}}
+  {{>admin-header}}
 
-{{else}}
-{{>common-header}}
-{{/if}} 
+  {{else}}
+  {{>common-header}}
+  {{/if}}
 
-{{{body}}}
-
+  {{{body}}}
 
 
-   <!-- footer section start -->
-      <div class="footer_section layout_padding">
-        <div class="container">
-          <div class="social_icon">
-            <ul style="display:flex;">
-              <li style="list-style:none;"><a href="#"><img src="https://img.icons8.com/fluency/344/facebook-new.png"></a></li>
-              <li style="list-style:none;"><a href="#"><img src="https://img.icons8.com/color/344/instagram-new--v1.png"></a></li>
-            </ul>
-          </div>
-          <p class="lorem_ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
-        </div>
+
+  <!-- footer section start -->
+  <div class="footer_section layout_padding">
+    <div class="footer-container">
+      <div class="social_icon">
+        <ul style="display:flex;">
+          <li style="list-style:none;"><a href="#"><img src="https://img.icons8.com/fluency/344/facebook-new.png"></a>
+          </li>
+          <li style="list-style:none;"><a href="#"><img
+                src="https://img.icons8.com/color/344/instagram-new--v1.png"></a></li>
+        </ul>
       </div>
-      <!-- footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-        <div class="container">
-          <p class="copyright_text">Copyright 2019 All Right Reserved By.</p>
-        </div>
-      </div>
-      <!-- copyright section end -->
-=======
-    {{#if commonUser}}
-{{>common-header}}
-{{/if}}
-{{#if admin}}
-{{>admin-header}}
-{{/if}}
-{{#if student}}
-{{>student-header}}
-{{/if}}
+      <p class="lorem_ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+    </div>
+  </div>
+  <!-- footer section end -->
+  <!-- copyright section start -->
+  <div class="copyright_section">
+    <div class="container">
+      <p class="copyright_text">Copyright 2019 All Right Reserved By.</p>
+    </div>
+  </div>
+  <!-- copyright section end -->
 
-{{{body}}}
 
- <!--footer-->
-    <section class="footer">
 
-    </section>
->>>>>>> master
-    <!--bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 
-    <!--jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".profile-container").click(function () {
-                $(".profile-info").fadeToggle(function () {
-                    if ($(".profile-container").css("align-items") == "flex-start") {
-                        $(".profile-container").css("align-items", "center");
-                    }
-                    else {
-                        $(".profile-container").css("align-items", "flex-start");
-                    }
-                });
-            });
+  <!--bootstrap-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
-            jQuery('.validatedForm').validate({
-    rules: {
-        Password: {
-            minlength: 5
-        },
-        password_confirm: {
-            minlength: 5,
-            equalTo: "#Password"
-        }
-    }
-});
+  <!--jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".profile-container").click(function () {
+        $(".profile-info").fadeToggle(function () {
+          if ($(".profile-container").css("align-items") == "flex-start") {
+            $(".profile-container").css("align-items", "center");
+          }
+          else {
+            $(".profile-container").css("align-items", "flex-start");
+          }
         });
+      });
+      setTimeout(function () {
+        $('.message').fadeOut('slow');
+      }, 1000);
+      setTimeout(function () {
+        $('.LogginErr').fadeOut('slow');
+      }, 4000);
+
+
+
+
+
+    /*script for createRoom*/
+
+      $(".general-info-header").click(function () {
+
+        if ($(".general-info-container").is(':visible')) {
+
+        }
+        else {
+
+          $(".general-info-container").toggle();
+          $(".createRoom-container").toggle();
+          $(".general-info-header").css("background-color", "white")
+          $(".create-room-header").css("background-color", "#0a4b69")
+          $(".general-h4").css("color", "black")
+          $(".create-room-h4").css("color", "white")
+
+
+        }
+          $(".create-room-header").click(function () {
+              if ($(".general-info-container").is(':visible')) {
+          $(".general-info-container").toggle();
+          $(".general-info-header").css("background-color", "#0a4b69")
+          $(".general-h4").css("color", "white")
+          $(".createRoom-container").toggle()
+          $(".create-room-header").css("background-color", "white")
+           $(".create-room-h4").css("color", "black")
+
+        }
+
+          })
+
+      })
+      
+
+
+      generalRoomInfoSubmit = function () {
+        console.log("btn clicked")
+        $(".roomGeneralInfo-form-container").toggle();
+        $(".General-info-submit-container").toggle();
+
+      }
+
+      RoomInfoSubmit = function () {
+        console.log("btn clicked")
+        $(".create-room-container").toggle();
+        $(".create-room-submit-container").toggle();
+
+      }
+
+
+    })
+  
+
+           
 
     </script>
 </body>

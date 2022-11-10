@@ -11,8 +11,10 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   color: whitesmoke;
+
   
 }
+
 header {
   background-color:var(--primary-background);
   
@@ -33,12 +35,14 @@ align-items: center;
 header nav img{
   height:6vh ;
 }
+
 .logo .logo-text{
   padding-left:1em ;
 }
 header nav a{
   color: whitesmoke;
 }
+
 header nav .profile-container
 {
   display: flex;
@@ -167,3 +171,26 @@ section .img-scroller {
 .sign-up p,label{
    color:black;
 }
+
+.profile-container .loginLogout {
+  padding: 1em 0;
+  
+}
+
+.profile-container .loginLogout input{
+  border-radius: 10%;
+  padding: .3em 2em;
+  border: none;
+}
+
+.profile-container .profileImg img{
+  display: inline-block;
+  width: 3em;
+  height:3em;
+  border-radius: 50%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+

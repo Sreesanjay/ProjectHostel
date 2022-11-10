@@ -6,6 +6,7 @@ var logger = require('morgan');
 var hbs = require('express-handlebars');
 var handlebars=require('handlebars');
 var db= require('./config/connection');
+var session = require('express-session');
 
 const fileupload = require("express-fileupload");
 
@@ -16,14 +17,11 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 
 
 var indexRouter = require('./routes/index');
-<<<<<<< HEAD
-var usersRouter = require('./routes/admin');
-=======
-var adminRouter = require('./routes/admin');
-//requiring db connction module
->>>>>>> master
 
-//var db=require('./config/connection');
+var usersRouter = require('./routes/admin');
+
+var adminRouter = require('./routes/admin');
+
 var app = express();
 
 // view engine setup
@@ -40,8 +38,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'session key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {maxAge:600000}
+}))
 
-<<<<<<< HEAD
 //db connection
 
 db.connect((err)=>{
@@ -50,20 +53,8 @@ db.connect((err)=>{
 });
 
 app.use('/', indexRouter);
-app.use('/admin', usersRouter);
-=======
-//mogo connections 
-
-/*db.connect((err)=> {
-  if(err) console.log('error'+err);
-  else console.log('db connected')
-})*/
-
-
-app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 
->>>>>>> master
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
