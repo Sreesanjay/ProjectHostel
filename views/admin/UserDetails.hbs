@@ -51,9 +51,8 @@
 <section class="userList pb-4">
 
   <div class="userListHeader py-4">
-    <form >
-   <button type="submit" formaction="/admin/userInfo" formmethod="get">Go back?</button>
-  </form>
+  
+   <a href="/admin/hostelerList" class="btn btn-info ml-3">Previous page</a>
 
     <h1 align="center">Student Deatils </h1>
 
@@ -115,9 +114,13 @@
      <td>Email address</td>
       <td>{{this.eMail}}</td>
     </tr>
+    <tr>
     <td>Guardians phone</td>
       <td>{{this.GuardianPhone}}</td>
     </tr>
+     <tr>
+    <td>Room Number</td>
+      <td>{{this.RoomNumber}}</td>
     </tr>
     {{/if}}
     {{/each}}

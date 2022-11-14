@@ -14,6 +14,17 @@
 
   
 }
+/*style for alert*/
+.failed-alert{
+  padding: 20px;
+  background-color:#f44336;
+  color: white;
+}
+.success-alert{
+  padding: 20px;
+  background-color:#04AA6D;
+  color: white;
+}
 
 header {
   background-color:var(--primary-background);

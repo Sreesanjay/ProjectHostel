@@ -3,6 +3,18 @@ var router = express.Router();
 
 var adminHelper=require('../helper/adminHelper')
 
+
+const verifyLogin=(req,res,next) => {
+  if(req.session.logedIn){
+    next();
+  }
+  else{
+    res.redirect('/login')
+  }
+}
+
+
+
 /* GET users listing. */
 router.get('/',(req,res)=>{
     
@@ -14,7 +26,7 @@ router.get('/',(req,res)=>{
 })
 
 //press go back from user details and redirecting to all user info
-router.get('/userInfo',(req,res)=>{
+router.get('/hostelerList',(req,res)=>{
   res.redirect('/admin')
 })
 
@@ -38,32 +50,12 @@ router.get('/eventDescription', function(req, res, next) {
   res.render('admin/eventDescription',{admin:true})
 });
 
-//retriving admission list for admin
-
-router.get('/admissionList', function(req, res, next) {
-  adminHelper.getAdmissionList().then((userData) => {
-    console.log(userData);
-    res.render('admin/admissionList', {userData,admin:true,title: 'Boys hostel' });
-})
-  
-});
-
-//request for getting admission list full view of a person
- router.post('/userInfo', function(req, res, next) {
- 
-   console.log(req.body.adNo)
-   adminHelper.getUserInfoByAdmissionNo(req.body.adNo).then((userData) => {
-    res.render('admin/admissionListFullDetails', {userData,title: 'Boys hostel' });
-  })
-  
- });
-
 //get request for viewing user details full view
- router.post('/userDetails',(req,res)=>{
-  
-    
-  adminHelper.getUserInfoByAdmissionNo(req.body.adNo).then((userData)=> {
-    res.render('admin/UserDetails',{userData})
+ router.get('/userDetails',(req,res)=>{
+  let adNo = req.query.adNo;
+    console.log("admission no is"+adNo)
+  adminHelper.getUserInfoByAdmissionNo(adNo).then((userData)=> {
+    res.render('admin/UserDetails',{userData,admin:true,title: 'Boys hostel'})
 
   })
 })
@@ -73,7 +65,6 @@ router.post('/announcement', function(req, res, next){
 console.log('announcement post get');
   adminHelper.storeAnnouncement(req.body, (data) => {
    res.send('announcement stored in db')
-   console.log(data);
   });
 
 })
@@ -118,71 +109,87 @@ router.post('/imgUpload', function(req, res){
     });
 
   })
+
+
+  //-------------------------admission process--------------------------
+
+  
+//retriving admission list for admin
+
+router.get('/admissionList', function(req, res, next) {
+  adminHelper.getAdmissionList().then((userData) => {
+    console.log(userData);
+   if(req.session.messageAlert){
+    var messageAlert =req.session.messageAlert
+   }
+
+    res.render('admin/admissionList', {userData,messageAlert,admin:true,title: 'Boys hostel' });
+    delete req.session.messageAlert;
+})
+  
+});
+
+//request for getting admission list full view of a person
+ router.get('/admissionUserInfo/:adNo', function(req, res, next) {
+   let adNo = req.params.adNo
+   adminHelper.getUserInfoByAdmissionNo(adNo).then((userData) => {
+    res.render('admin/admissionListFullDetails', {userData,title: 'Boys hostel' });
+  })
+  
+ });
   
 //request for room info for admitting students
 
-router.post('/viewRoomInfo',(req,res)=>{
-  req.session.admissionNumber=req.body.adNo;
+router.get('/viewRoomInfo/:adNo',(req,res)=>{
+  req.session.admissionNumber=req.params.adNo;
+  if(req.session.messageAlert)
+  {
+    var messageAlert=req.session.messageAlert
+  }
   adminHelper.getRoomInfo().then((RoomInfo)=>{
-  res.render('admin/RoomInfo',{admin:true,RoomInfo,title: 'Boys hostel' })
+
+  res.render('admin/RoomInfo',{admin:true,messageAlert,RoomInfo,title: 'Boys hostel' })
+ 
+  }).catch((error)=>{
+    res.render('admin/createRoomErr',{admin:true})
   })
 })
 
   // getting admit request
 
 
-router.post('/admitStudent', function(req, res){
-
-  adminHelper.updateRoomInfo(req.body.RoomNo).then((status)=>{
+router.get('/admitStudent/:RoomNo', function(req, res){
+  adminHelper.updateRoomInfo(req.params.RoomNo).then((status)=>{
     if(status){
-      console.log("room info updated")
-
-    adminHelper.admissionStatusUpdate( req.session.admissionNumber,req.body.RoomNo,).then((message)=>{
-    
-      adminHelper.getAdmissionList().then((userData) => {
-        req.session.admissionNumber.destroy();
-        res.render('admin/admissionList', {userData,admin:true,title: 'Boys hostel' });
-    })
-      
-      
+  
+    adminHelper.admissionStatusUpdate( req.session.admissionNumber,req.params.RoomNo,).then((msg)=>{
+        delete req.session.admissionNumber;
+        req.session.messageAlert={
+          message:msg,
+          type:true
+        }
+        res.redirect('/admin/admissionList');
+ 
+   }).catch((msg)=>{
+    req.session.messageAlert={
+      message:msg,
+      type:false
+    }
+    res.redirect('/admin/admissionList');
    })
   }
 
-  }).catch((message) => {
-    adminHelper.getAdmissionList().then((userData) => {
-    res.render('admin/admissionList', {msg:true,message,userData,admin:true,title: 'Boys hostel' });
+  }).catch((msg) => {
+      req.session.messageAlert={
+        message:msg,
+        type:false
+      }
+    res.redirect('/admin/viewRoomInfo/:adNo');
     })
-
-  })
  
   
   })
-
-
-
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-
-  notification="Admission Started";
-  res.render('Common/index', { commonUser:true,title: 'Boys hostel',notification });
-});
-
-router.get('/gallery', function(req, res, next) {
-  res.render('Common/gallery', { commonUser:true,title: 'Gallery' });
-});
-
-router.get('/login-page', function(req, res, next) {
-  res.render('Common/login-page', {commonUser:true, title: 'Login' });
-});
-
-router.get('/admission-form', function(req, res, next) {
-  res.render('Common/admission-form', {commonUser:true, title: 'admission-form' });
-});
-
- router.post('/login', function(req, res) {
-   console.log('request got')
- })
+  //------------------------admission process end--------------------------------
 
 
  router.get('/Rooms',(req,res)=>{
@@ -199,7 +206,6 @@ router.get('/admission-form', function(req, res, next) {
 //creating room
  router.get('/createRoom',(req,res)=>{
   
-  console.log("helloo")
   res.render('admin/createRoom',{admin:true})
  })
 

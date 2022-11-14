@@ -67,17 +67,13 @@ module.exports = {
      //request for the user info of admitted student
      getUserInfo: () => {
           return new Promise(async (resolve, reject) => {
-               let userArray = await db
-                    .get()
-                    .collection("userInfo")
-                    .find()
-                    .toArray();
+               let userArray = await db.get().collection("userInfo").find({AdmissionStatus:true}).toArray();
                console.log("userinfo passed");
                resolve(userArray);
           });
      },
 
-     //request for room information
+     //request for room information for admitting student
 
      getRoomInfo: () => {
           return new Promise(async (resolve, reject) => {
@@ -101,7 +97,6 @@ module.exports = {
             let RoomNumber=body.RoomNo;
                     let rooms=await db.get().collection('roomInfo').findOne({RoomNo:RoomNumber});
                     if(rooms) {
-                        console.log("update start");
                         db.get().collection('roomInfo').updateOne({ RoomNo:body.RoomNo},{$set:{
                               RoomNo: body.RoomNo,
                               FloorNo: body.FloorNo,
@@ -124,7 +119,7 @@ module.exports = {
                               RoomType: body.RoomType,
                               TotalBeds: body.TotalBeds,
                               AttachedBathroom: body.AttachedBathroom,
-                              AvailablBeds:3
+                              AvailableBeds:3
                          })
                          .then((data) => {
                             if(data){
@@ -138,56 +133,60 @@ module.exports = {
           });
      },
 
-
+    //updating the general hostel info
      UpdateGeneralInfo: (body) => {
         return new Promise(async (resolve, reject) => {
-                    db.get().collection('hostelInfo').drop().then((data) => {
-                        if(data){
-                            console.log("Room droped")
-                        }
-                    })
-                      db.get().collection('hostelInfo').insertOne({
-                        TotalFloors:body.TotalFloors,
-                        StudyRoom: body.StudyRoom,
-                        Mess: body.Mess
-                       }).then((data) => {
-                          if(data){
-                              resolve("hostel information updated");
-                          }
-                          else{
-                              reject("Updation failed")
-                          }
-                       })
+                    console.log(body)
+                
+                      db.get().collection('hostelInfo') .updateOne(
+                         {},
+                         { $set: {  
+                              TotalFloors:body.TotalFloors,
+                              StudyRoom:body.StudyRoom,
+                              Mess:body.Mess 
+                         } }
+                    )                       
+
+                       resolve("general info updated")
         });
    },
 
-     updateRoomInfo: (RoomNo) => {
+   //updating the room info after admitting a student(setting available beds-1)
+
+     updateRoomInfo: (RoomNumber) => {
+          console.log("room no is:"+RoomNumber)
           return new Promise(async (resolve, reject) => {
-               let roomList = await db.get().collection("roomInfo").findOne({ RoomNo:RoomNo });
+               let roomList = await db.get().collection("roomInfo").findOne({RoomNo:RoomNumber });
                console.log(roomList);
 
-               if (roomList) {
+          
                     if (roomList.AvailableBeds == 0) {
+                         console.log("room full")
                          reject("Room Full");
                     } else {
-                         var availableBeds = roomList.AvailableBeds - 1;
-                    }
-               } else {
-                    var availableBeds = 2;
-               }
+                         var availableBeds = roomList.AvailableBeds-1;
+                         
 
                db.get()
                     .collection("roomInfo")
                     .updateOne(
-                         { RoomNumber: RoomNo },
+                         { RoomNo: RoomNumber },
                          { $set: { AvailableBeds: availableBeds } }
-                    );
-               let status = true;
-               resolve(status);
+                    ).then((status) => {
+                         if(status){
+                             
+                              resolve(status);
+                         }
+                         else{
+                              
+                              reject("Room allotting failed")
+                         }
+                    })
+               }
           });
      },
 
-     //update admission status
+     //update admission status of student by setting admission status true and allottinig the room number 
 
      admissionStatusUpdate: (data, RoomNo) => {
           return new Promise(async (resolve, reject) => {
@@ -195,16 +194,20 @@ module.exports = {
                     .collection("userInfo")
                     .updateOne(
                          { AdmissionNo: data },
-                         { $set: { AdmissionStatus: true } }
-                    );
-               db.get()
-                    .collection("userInfo")
-                    .updateOne(
-                         { AdmissionNo: data },
-                         { $set: { RoomNumber: RoomNo } }
-                    );
-               console.log("admission status true");
-               resolve("Student admitted");
+                         { $set: { AdmissionStatus: true,
+                                   RoomNo: RoomNo
+                         } }
+                    ).then((status)=>{
+                         if(status){
+                              resolve("Student admission success")
+                         }
+                         else{
+                              reject("Student admission failed")
+                         }
+                    }).catch((err) => {
+                         reject(err)
+                    })
+              
           });
      },
 };

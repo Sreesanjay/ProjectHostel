@@ -1,4 +1,17 @@
 <section class="room-info">
+    {{#if messageAlert}}
+    {{#if messageAlert.type}}
+    <div class="success-alert alert">
+        <strong>Success!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    
+    {{else}}
+     <div class="failed-alert alert">
+        <strong>Failed!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    {{/if}}
+    
+    {{/if}}
 
     <div class="room-info-header py-3">
         <h2 align="center">Room Info</h2>
@@ -14,21 +27,17 @@
     </tr>
   </thead>
   <tbody>
+    {{#each RoomInfo}}
     <tr>
-        <form action="/admin/AdmitStudent" method="post">
-      <th scope="row" value="R1" name="RoomNo">R1</th>
-      <td name="FloorNo">F1</td>
-      {{#each RoomInfo}}
-      {{#ifEquels this.RoomNo "R1"}}
-      <td>{{this.AvailableRooms}}hh</td>
-      {{/ifEquels}}
-      {{/each}}
-      <td>
-        
-        <button id="RoomAdmitBtn" >Admit</button>
-        </form>
-      </td>
+            <td>{{this.RoomNo}}</td>
+            <td>{{this.FloorNo}}</td>
+            <td>{{this.AvailableBeds}}</td>
+            <td>
+            <a href="/admin/admitStudent/{{this.RoomNo}}" class="btn btn-primary">Admit</a>
+            </td>
+            
     </tr>
+    {{/each}}
     
   </tbody>
 </table>

@@ -2,22 +2,23 @@
 
 .room-section .card-container .card{
     background-color: var(--secondary-background);
-    width:8em;
-}
-.room-section .card-body{
-
+    min-width:8em;
 }
 
-
-
-/* room info style */
-
-
-.room-info h2,th,td{
-    color:rgb(24, 24, 26);
+.room-section .full-room-info-container{
+    width: 15em;
+    display: none;
 }
-
-/*rooms style */
+.room-section .row{
+    display: flex;
+    justify-content: center;
+}
+.room-header h5{
+    color: var(--primary-text);
+}
+.room-header a{
+    text-decoration: none;
+}
 .room-header select,option{
     color: var(--secondary-text);;
 }
@@ -27,6 +28,11 @@
 .room-header .row{
     margin: 0;
     padding: 0;
+}
+
+/*roomInfo style */
+.room-info h2,th,td{
+    color:rgb(24, 24, 26);
 }
 
 /* style for createRoomErr */

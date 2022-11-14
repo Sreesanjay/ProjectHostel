@@ -3,13 +3,28 @@ var router = express.Router();
 var adminHelper=require('../helper/adminHelper')
 var commonHelper=require('../helper/commonHelper')
 
+const verifyLogin=(req,res,next) => {
+  if(req.session.logedIn){
+    next();
+  }
+  else{
+    res.redirect('/login')
+  }
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let user=req.session.user
   let loginStatus=req.session.logedIn
   let userId=req.session.userId;
+  if(req.session.messageAlert){
+    console.log("message alert got")
+    var messageAlert =req.session.messageAlert
+  }
+  
   commonHelper.getAnnouncement().then((announcement) => {
-  res.render('common/index', {admin:false,announcement,user,loginStatus,userId});
+  res.render('common/index', {admin:false,announcement,user,loginStatus,userId,messageAlert});
+  delete req.session.messageAlert;
  })  
 });
 
@@ -65,13 +80,7 @@ router.get('/signup',(req, res, next) => {
 })
 
 
-//request for admission-form
- router.get('/admission-form', function(req, res, next) {
-  let user=req.session.user
-  let loginStatus=req.session.logedIn
-  let userId=req.session.userId;
-   res.render('Common/admission-form', {commonUser:true, title: 'admission-form' ,user,loginStatus,userId});
- });
+
 
 //request for event
 router.get('/events',(req,res)=>{
@@ -87,8 +96,17 @@ router.get('/events',(req,res)=>{
 })
 
 
+//---------------------admission process --------------------
 
- //getting admission form
+//request for admission-form
+router.get('/admission-form', function(req, res, next) {
+  let user=req.session.user
+  let loginStatus=req.session.logedIn
+  let userId=req.session.userId;
+   res.render('Common/admission-form', {commonUser:true, title: 'admission-form' ,user,loginStatus,userId});
+ });
+
+ //post request for admission form
 
  router.post('/admissionForm',(req,res)=>{
   commonHelper.storeAdmissionDetails(req.body).then((insertId )=> {
@@ -105,6 +123,10 @@ router.get('/events',(req,res)=>{
   })
 });
 })
+
+
+
+//------------------------admission process end------------------------
 
 
 // post request to signup page
@@ -137,6 +159,10 @@ commonHelper.doLogin(req.body).then((response)=>{
     req.session.logedIn=true;
     req.session.user=response.user;
     req.session.userId=response.user._id;
+    req.session.messageAlert={
+      message:"Login Success",
+      type:true
+    }
     
     res.redirect('/')
   }

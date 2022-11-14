@@ -28,27 +28,25 @@
   .admissionList td {
     border: 0;
   }
-  .message{
-    width: 100%;
-    opacity: 0.8;
-   
-  }
-  .message p{
-    font-size:3em;
-     color: rgb(252, 251, 251);
-    
-  }
 
 
 </style>
 
 <section class="admissionList">
   <div class="admissionListHeader py-2">
-    <div class="message alert alert-danger" role="alert" mb-2 bg-info">
-      {{#if msg}}
-     <p class="py-3" align="center">{{message}}</p>
-      {{/if}}
-  </div>
+    {{#if messageAlert}}
+    {{#if messageAlert.type}}
+    <div class="success-alert alert">
+        <strong>Success!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    
+    {{else}}
+     <div class="failed-alert alert">
+        <strong>Failed!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    {{/if}}
+    
+    {{/if}}
     <h1 align="center">Admission List</h1>
   </div>
   <table border="" style="margin-left: 5vw;">
@@ -71,17 +69,11 @@
 
       <td>{{this.Name}}</td>
       <td>{{this.Department}}</td>
-
-      <form>
-        <td><button formaction="/admin/userInfo" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
-            name="adNo">View more</button></td>
-
-        <td><button formaction="/admin/viewRoomInfo" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
-            name="adNo">Admit</button></td>
-
-      </form>
-
-
+        <td>
+          <a href="/admin/admissionUserInfo/{{this.AdmissionNo}}" class="btn btn-info">View more</a>
+        <td>
+          <a href="/admin/viewRoomInfo/{{this.AdmissionNo}}" class="btn btn-primary">Admit</a> 
+        </td>
     </tr>
     {{/if}}
     {{/each}}

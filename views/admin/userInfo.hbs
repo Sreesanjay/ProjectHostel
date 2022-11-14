@@ -45,34 +45,26 @@
     
     <h1 align="center">Student details</h1>
   </div>
-  <table border="" style="margin-left: 10vw;" >
+  <table border="" style="margin-left: 10vw;">
     <div class="row">
-      <tr class="bg-info" >
+      <tr class="bg-info">
         <td style="width:40vw;">Name</td>
         <td style="width:30vw;">Department</td>
         <td style="width:10vw;"></td>
-        
+  
       </tr>
     </div>
-
+  
     {{#each userData}}
-    {{#if userData.AdmissionStatus }}
-    {{else}}
     <tr>
-
+  
       <td>{{this.Name}}</td>
       <td>{{this.Department}}</td>
-
-      <form>
-        <td><button formaction="/admin/userDetails" formmethod="post" type="submit" value="{{this.AdmissionNo}}"
-            name="adNo">View more</button></td>
-        
-
-      </form>
-
-
+  
+      <td>
+        <a href="/admin/userDetails?adNo={{this.AdmissionNo}}" class="btn btn-info"> View details</a>
+  
     </tr>
-    {{/if}}
     {{/each}}
   </table>
 </section>

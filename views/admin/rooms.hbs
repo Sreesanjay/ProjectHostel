@@ -2,22 +2,24 @@
     <div class="header p-3">
         <div class="row">
             <h2 class="col-md-10 col-12">Room Information</h2>
-            <select name="Floor" id="" class="col-md-2 col-12">
-                <option value="1">Ground floor</option>
-                <option value="2">First floor</option>
-                <option value="3">Second floor</option>
-            </select>
+            <a href="/admin/createRoom" class="col-md-2 mt-2"><h5>Update Room</h5></a>
         </div>
     </div>
 </section>
 <secion class="room-section">
-    <div class="row">
+    <div class="row m-0 px-3">
         {{#each roomInfo}}
-        <div class="card-container col-md-2 col-4 m-3 ">
+        <div class="card-container  my-3 ml-3" onclick="cardClick('{{this.RoomNo}}')">
             <div class="card">
                 <div class="card-body p-0">
                     <h2 align="center" class="card-title my-5">{{this.RoomNo}}</h2>
-                    <h6 align="center" class="bg-info mb-0 py-3">{{this.AvailablBeds}}/{{this.TotalBeds}}</h6>
+                    <div class="full-room-info-container {{this.RoomNo}}">
+                        <h5 align="center" class="card-title mb-3">Floor No:&nbsp{{this.FloorNo}}</h5>
+                         <h5 align="center" class="card-title mb-3">Room Type:&nbsp{{this.RoomType}}</h5>
+                           <h5 align="center" class="card-title mb-3">Attached Bathroom:&nbsp{{this.AttachedBathroom}}</h5>
+                        
+                    </div>
+                    <h6 align="center" class="bg-info mb-0 py-3">{{this.AvailableBeds}}/{{this.TotalBeds}}</h6>
                 </div>
             </div>
         </div>

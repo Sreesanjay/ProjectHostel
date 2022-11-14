@@ -1,4 +1,18 @@
 <!-- landing page for common people -->
+
+     {{#if messageAlert}}
+    {{#if messageAlert.type}}
+    <div class="success-alert alert">
+        <strong>Success!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    
+    {{else}}
+     <div class="failed-alert alert">
+        <strong>Failed!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    {{/if}}
+    
+    {{/if}}
     <!--notification-scroller-->
     <section class="notification-scroller">
 

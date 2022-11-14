@@ -79,12 +79,10 @@
           }
         });
       });
-      setTimeout(function () {
-        $('.message').fadeOut('slow');
-      }, 1000);
-      setTimeout(function () {
-        $('.LogginErr').fadeOut('slow');
-      }, 4000);
+      
+
+      //script for admissionList
+        setTimeout(()=>($('.alert').fadeToggle()),3000)
 
 
 
@@ -139,8 +137,22 @@
 
       }
 
+      cardClick = function (roomNo) {
+        
+          $('.'+roomNo).toggle();
+      }
+      sortRoom = function (roomInfo,value) {
+        console.log("sort got")
+
+      }
+
 
     })
+
+
+    /*script for rooms*/
+
+  
   
 
            

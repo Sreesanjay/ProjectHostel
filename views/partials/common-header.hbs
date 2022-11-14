@@ -1,72 +1,79 @@
-
-
-    <header>
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <div class="logo m-auto p-3">
-                    <div class="logo-img">
-                        <img src="https://drive.google.com/uc?id=1SyPpIeIpxlh--r9eoAB9HWi-iSnSNkZA ">
-                    </div>
-                    <div class="logo-text">
-                        <h1> HOSTEL</h1>
-                            <h6>WMO Arts And Science Collage</h4>
-                    </div>
+<header>
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="logo m-auto p-3">
+                <div class="logo-img">
+                    <img src="https://drive.google.com/uc?id=1SyPpIeIpxlh--r9eoAB9HWi-iSnSNkZA ">
+                </div>
+                <div class="logo-text">
+                    <h1> HOSTEL</h1>
+                    <h6>WMO Arts And Science Collage</h4>
                 </div>
             </div>
-            <div class="col-md-6 my-auto">
-                <nav class="navbar navbar-expand-lg navbar-light ">
+        </div>
+        <div class="col-md-6 my-auto">
+            <nav class="navbar navbar-expand-lg navbar-light ">
 
-                    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto pt-3">
-                            <li class="nav-item active">
-                                <a class="nav-link text-white" href="redirecToHome">Home </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="/admission-form">Admission</a>
-                            </li>
-                            <li class="nav-item mb-4 mr-3">
-                                <a class="nav-link text-white" href="#">Contact</a>
-                            </li>
-                            <li>
-                                <div class="profile-container ml-1">
+                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto pt-3">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="redirecToHome">Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admission-form">Admission</a>
+                        </li>
+                        <li class="nav-item mb-4 mr-3">
+                            <a class="nav-link text-white" href="#">Contact</a>
+                        </li>
+                        <li>
+                            <div class="profile-container ml-1">
+                                {{#if user}}
+                                <div class="profileImg"> <img src="/userImages/{{userId}}.jpg" class="profile pb-1">
+                                </div>
+
+                                {{else}}
+                                <img src="https://drive.google.com/uc?id=12Ox0zaIOWNT63eHsmdG9Ut3ruBrCIwyM  "
+                                    class="profile pb-1">
+                                {{/if}}
+                                <div class="profile-info pt-3">
                                     {{#if user}}
-                                    <div class="profileImg"> <img src="/userImages/{{userId}}.jpg" class="profile pb-1"></div>
-                                    
+                                    <h4>{{user.Name}}</h4>
+                                    <h6>{{user.eMail}}</h6>
+                                    <h4>Manage Account</h4>
+                                    <h4>Personal page</h4>
                                     {{else}}
-                                    <img src="https://drive.google.com/uc?id=12Ox0zaIOWNT63eHsmdG9Ut3ruBrCIwyM  " class="profile pb-1">
-                                    {{/if}}
-                                    <div class="profile-info pt-3">
-                                        <h5>Name</h6>
+                                    <h5>Name</h6>
                                         <h6>E-mail</h6>
-                                        <h4>Manage Account</h4>
-                                        <h4>Personal page</h4>
+                                        {{/if}}
                                         <div class="line">
 
                                         </div>
                                         <div class="loginLogout">
-                                            
-                                                {{#if user}}
-                                                
-                                                <a href="/logout" class="logout"><input type="submit" value="Logout" class="bg-info"/></a>
-                                                
-                                                {{else}}
-                                                
-                                               <a href="/login" class="login"><input type="submit" value="Login" class="bg-info"/></a>
-                                    
-                                                {{/if}}
+
+                                            {{#if user}}
+
+                                            <a href="/logout" class="logout"><input type="submit" value="Logout"
+                                                    class="bg-info" /></a>
+
+                                            {{else}}
+
+                                            <a href="/login" class="login"><input type="submit" value="Login"
+                                                    class="bg-info" /></a>
+
+                                            {{/if}}
                                         </div>
 
-                                    </div>
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
