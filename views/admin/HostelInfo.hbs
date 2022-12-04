@@ -1,0 +1,72 @@
+<!--hostel info page-->
+<section class="section-header">
+    <div class="header ">
+        <div class="row pb-0 mb-0">
+            <div class="select-hostel-info col-md-10 col-12">
+                <div class="row">
+                    <div class="general-header ml-3 p-2 mb-0">
+                         <h4 class="general-header-h4">general Information</h4>
+                    </div>
+                    <div class="room-info-header p-2">
+                        <h4 class="room-info-header-h4">Room Information</h4>
+                    </div>
+                    
+                </div>
+            </div>
+            <a href="/admin/UpdateHostel" class="col-md-2 mt-2 p-2">
+                <h5>Update Hostel info</h5>
+            </a>
+        </div>
+    </div>
+</section>
+<!--general information section-->
+
+<section class="general-info-section">
+    <div class="container">
+    <table class="table">
+  <tbody>
+    {{#if GeneralInfo}}
+    <tr>
+      <td>Name of the hostel</td>
+      <td>{{GeneralInfo.HostelName}}</td>
+    </tr>
+    <tr>
+      <td>Total floors</td>
+      <td>{{GeneralInfo.TotalFloors}}</td>
+    </tr>
+      <tr>
+      <td>Study room</td>
+      <td>{{GeneralInfo.StudyRoom}}</td>
+    </tr>
+    <tr>
+      <td>Mess Facility</td>
+      <td>{{GeneralInfo.Mess}}</td>
+    </tr>
+{{/if}}
+  </tbody>
+</table>
+</div>
+</section>
+
+
+<!-- room information section -->
+<secion class="room-section">
+    <div class="row m-0 px-3">
+        {{#each RoomInfo}}
+        <div class="card-container  my-3 ml-3" onclick="cardClick('{{this.RoomNo}}')">
+            <div class="card">
+                <div class="card-body p-0">
+                    <h2 align="center" class="card-title my-5">{{this.RoomNo}}</h2>
+                    <div class="full-room-info-container {{this.RoomNo}}">
+                        <h5 align="center" class="card-title mb-3">Floor No:&nbsp{{this.FloorNo}}</h5>
+                         <h5 align="center" class="card-title mb-3">Room Type:&nbsp{{this.RoomType}}</h5>
+                           <h5 align="center" class="card-title mb-3">Attached Bathroom:&nbsp{{this.AttachedBathroom}}</h5>
+                        
+                    </div>
+                    <h6 align="center" class="bg-info mb-0 py-3">{{this.AvailableBeds}}/{{this.TotalBeds}}</h6>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</secion>

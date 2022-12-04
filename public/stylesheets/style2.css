@@ -1,5 +1,9 @@
-/*style for rooms*/
+/*style for hostelInfo*/
 
+
+.room-section{
+    display: none;
+}
 .room-section .card-container .card{
     background-color: var(--secondary-background);
     min-width:8em;
@@ -13,22 +17,30 @@
     display: flex;
     justify-content: center;
 }
-.room-header h5{
+.section-header h5{
     color: var(--primary-text);
 }
-.room-header a{
+.section-header a{
     text-decoration: none;
 }
-.room-header select,option{
+.section-header select,option{
     color: var(--secondary-text);;
 }
-.room-header .header{
+.section-header .header{
     background-color: var(--secondary-background);
 }
-.room-header .row{
+.section-header .row{
     margin: 0;
     padding: 0;
 }
+
+.section-header .general-header{ 
+    background-color: white;
+    color:rgb(0, 0, 0);
+}
+
+
+
 
 /*roomInfo style */
 .room-info h2,th,td{
@@ -81,27 +93,25 @@
 
 .createRoom .general-info{
     width: 100%;
+   
 }
+
 .createRoom .general-info-container{
     display: none;
-
 }
+
 
 .createRoom select,option{
     color: rgb(1, 1, 1);
 }
-.createRoom .General-info-submit-container{
+.createRoom .form-submit-generalInfo{
     
     display: flex;
     justify-content:center;
     display:none; 
-} 
-.createRoom .General-info-submit {
-   
-    background-color:var(--primary-background);
     width: 100%;
+} 
 
-}
 .createRoom .btn-container{
     display: flex;
     justify-content:center;

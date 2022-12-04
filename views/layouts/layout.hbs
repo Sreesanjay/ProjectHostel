@@ -64,9 +64,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+ 
 
   <!--jquery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script>
     $(document).ready(function () {
       $(".profile-container").click(function () {
@@ -82,7 +84,7 @@
       
 
       //script for admissionList
-        setTimeout(()=>($('.alert').fadeToggle()),3000)
+        setTimeout(()=>($('.alert').toggle()),2000)
 
 
 
@@ -92,9 +94,8 @@
 
       $(".general-info-header").click(function () {
 
-        if ($(".general-info-container").is(':visible')) {
-
-        }
+        if ($(".general-info-container").is(':visible')) {}
+       
         else {
 
           $(".general-info-container").toggle();
@@ -120,6 +121,56 @@
           })
 
       })
+
+
+      /*submit general info*/
+
+      GeneralInfoSubmit=function(){
+        console.log("btn clicked")
+        $('.general-info-container').toggle();
+        $(".createRoom .container").css("background",'white')
+        $(".form-submit-generalInfo").toggle();
+      }
+
+
+
+
+ /*script for HostelInfo*/
+
+      $(".general-header").click(function () {
+        console.log("general info clicked")
+
+        if ($(".general-info-section").is(':visible')) {
+
+        }
+        else {
+
+          $(".general-info-section").toggle();
+          $(".room-section").toggle();
+          $(".general-header").css("background-color", "white")
+          $(".room-info-header").css("background-color", "#0a4b69")
+          $(".general-header-h4").css("color", "black")
+          $(".room-info-header-h4").css("color", "white")
+
+
+        }
+      })
+        $(".room-info-header").click(function () {
+          console.log("room info clicked")
+          if ($(".general-info-section").is(':visible')) {
+            $(".general-info-section").toggle();
+            $(".general-header").css("background-color", "#0a4b69")
+            $(".general-header-h4").css("color", "white")
+            $(".room-section").toggle()
+            $(".room-info-header").css("background-color", "white")
+            $(".room-info-header-h4").css("color", "black")
+
+          }
+
+        })
+
+
+
       
 
 
@@ -147,15 +198,69 @@
       }
 
 
-    })
+    
 
 
     /*script for rooms*/
 
   
-  
+  /*script for comfirmBox*/
+  comfirmClick= function (){
+    $(".comfirmBox").toggle();
+     $(".RoomInfoTable").toggle();
+  }
 
-           
+
+  /*script for form submission*/
+     FormInfoSubmit=function(){
+      console.log("btn clicked")
+     $(".GeneralInfo-form-container").toggle();
+      $(".form-submit-container").toggle();
+     }   
+
+     /*script for validate password matching password and comfirm password*/
+     $("#sign-up-form").validate({
+      rules:{
+       eMail:{
+        required:true
+       },
+       Password:{
+        required:true,
+        minlength:8
+       },
+       ComfirmPassword:{
+        equalTo:"#password-input"
+       }
+      }
+         })
+
+      /*script for Admin-signUP*/
+  inpCheckboxClick=function(){
+    var password=document.getElementById("password-input")
+    var comfirmPassword=document.getElementById("Comfirm-Password") 
+   if(password.type=="password"){
+    password.type="text"
+    comfirmPassword.type="text"
+    }
+    else{
+     password.type="password"
+    comfirmPassword.type="password"
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+})
+
+
 
     </script>
 </body>

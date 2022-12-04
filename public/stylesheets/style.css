@@ -188,8 +188,7 @@ section .img-scroller {
   
 }
 
-.profile-container .loginLogout input{
-  border-radius: 10%;
+.profile-container .loginLogout a{
   padding: .3em 2em;
   border: none;
 }
@@ -203,5 +202,23 @@ section .img-scroller {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+
+
+
+
+/* style for contact */
+
+.contact-section {
+ 
+  background: linear-gradient(to right, #ced6e0, #76afd6);
+}
+
+.contact-section .bg-image {
+  background-image: url('https://drive.google.com/uc?id=1EMPyrN6JFyn_nR3iLclWFf8WYAgv9YNS ');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 

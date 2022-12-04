@@ -60,13 +60,8 @@
     </div>
 
     {{#each userData}}
-    {{#if userData.AdmissionStatus }}
+  
     <tr>
-      <td>admission true</td>
-    </tr>
-    {{else}}
-    <tr>
-
       <td>{{this.Name}}</td>
       <td>{{this.Department}}</td>
         <td>
@@ -75,7 +70,6 @@
           <a href="/admin/viewRoomInfo/{{this.AdmissionNo}}" class="btn btn-primary">Admit</a> 
         </td>
     </tr>
-    {{/if}}
     {{/each}}
   </table>
 </section>

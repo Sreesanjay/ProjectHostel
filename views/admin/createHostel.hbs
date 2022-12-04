@@ -1,0 +1,196 @@
+<!--for editing hostel info-->
+<style>
+    .form-submit-generalInfo {
+        display: none;
+        margin: 10em 0;
+    }
+</style>
+
+    {{#if messageAlert}}
+    {{#if messageAlert.type}}
+    <div class="success-alert alert mb-0">
+        <strong>Success!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    
+    {{else}}
+     <div class="failed-alert alert mb-0">
+        <strong>Failed!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    {{/if}}
+    
+    {{/if}}
+<section class="createRoom ">
+    <div class="room-info-header-container col-md-12 d-flex mb-4">
+        <div class="row">
+            <div class="create-room-header px-2">
+                <h5 class="create-room-h4">Create room</h4>
+            </div>
+            <div class="general-info-header ml-2 px-2">
+                <h5 class="general-h4">Edit General info</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-3">
+        <div class="row mb-5 pb-5">
+
+            <div class="general-info ">
+                <div class="general-info-container">
+                    <form action="/admin/GeneralInfo" method="post" enctype="multipart/form-data">
+
+                        <div class="roomGeneralInfo-form-container">
+                            <div class="form-group">
+                                <label for="Total floors">Hostel Name</label>
+                                <input type="text" name="HostelName" class="form-control"
+                                    placeholder="Enter Hostel name" value="{{generalInfo.HostelName}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Total floors">Collage Name</label>
+                                <input type="text" name="CollageName" class="form-control"
+                                    placeholder="Enter collage name" value="{{generalInfo.CollageName}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Total floors">Logo</label>
+                                <input type="file" name="HostelLogo" class="form-control"
+                                    placeholder="insert hostel logo">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Total floors">Address</label>
+                                <textarea name="HostelAddress" class="form-control text-secondary " id="totalFloor"
+                                    placeholder="Enter Hostel Address" value="{{generalInfo.HostelAddress}}"></textarea>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Total floors">Hostel Type</label>
+                                <select class="form-select" name="HostelType" aria-label="Default select example"
+                                    value="{{generalInfo.HostelType}}">
+                                    <option value="Yes">Boys</option>
+                                    <option value="No">Girls</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Total floors">Total floors</label>
+                                <input type="text" name="TotalFloors" class="form-control" id="totalFloor"
+                                    placeholder="Enter total floors" value="{{generalInfo.TotalFloors}}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Total floors">Study Room</label>
+                                <select class="form-select" name="StudyRoom" aria-label="Default select example"
+                                    value="{{generalInfo.StudyRoom}}">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Total floors">Mess Facility</label>
+                                <select class="form-select" name="Mess" aria-label="Default select example"
+                                    value="{{generalInfo.Mess}}">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <button type="reset" class="btn btn-primary">Clear</button>
+                        <button type="button" onclick="GeneralInfoSubmit()" class="btn btn-primary">Submit</button>
+
+                    </div>
+                        <div class="form-submit-generalInfo">
+                            <div class="form-submit">
+                                <h2 align="center" class="text-secondary">Are you sure,</h2><br>
+                                <h3 align="center" class="mb-5 text-secondary">You want to update hostel info</h3>
+                                <div class="row btn-container d-flex justify-content-center align-items-center">
+
+                                    <div class="reset-btn mt-3 mr-3">
+                                        <button type="reset" onclick="FormInfoSubmit()"
+                                            class="btn btn-primary px-5">No</button>
+                                    </div>
+                                    <div class="submit-btn mt-3 ml-3">
+                                        <button type="submit" class="btn btn-primary px-5">Yes</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="createRoom-container px-4">
+
+                {{!-- form for creating a new room --}}
+                <form action="/admin/createRoom" method="post">
+
+                    <div class="create-room-container">
+
+
+                        <div class="form-group">
+                            <label for="RoomNo">Room Number</label>
+                            <input type="text" name="RoomNo" class="form-control" id="RoomNo"
+                                placeholder="Enter Room Number">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Total FloorNumber">Floor Number</label>
+                            <input type="text" name="FloorNo" class="form-control" id="totalRooms"
+                                placeholder="Enter total rooms">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="RoomType">Room Type</label>
+                            <select class="form-select" name="RoomType" aria-label="Default select example">
+                                <option value="Normal">Normal</option>
+                                <option value="Dormitory">Dormitory</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Total beds">Total beds</label>
+                            <input type="text" name="TotalBeds" class="form-control" id="totalBeds"
+                                placeholder="Enter total beds">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="AttachedBathroom">Attached Bathroom</label>
+                            <select class="form-select" name="AttachedBathroom" aria-label="Default select example">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+
+                            </select>
+                        </div>
+                        <button type="reset" class="btn btn-primary">Clear</button>
+                        <button type="button" onclick="RoomInfoSubmit()" class="btn btn-primary">Submit</button>
+                    </div>
+
+
+                    <div class="create-room-submit-container">
+                        <div class="Room-info-submit py-4">
+                            <h2 align="center" class="">Are you sure,</h2><br>
+                            <h3 align="center" class="mb-5">You want to create/edit room?</h3>
+                            <div class="row btn-container">
+
+                                <div class="reset-btn mt-3 mr-3">
+                                    <button type="reset" onclick="RoomInfoSubmit()" class="btn btn-primary">No</button>
+                                </div>
+                                <div class="submit-btn mt-3 ml-3">
+                                    <button type="submit" class="btn btn-primary">Yes</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

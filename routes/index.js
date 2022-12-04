@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var adminHelper=require('../helper/adminHelper')
 var commonHelper=require('../helper/commonHelper')
+var transporter=require('../helper/nodemailer')
 
 const verifyLogin=(req,res,next) => {
   if(req.session.logedIn){
@@ -14,23 +15,36 @@ const verifyLogin=(req,res,next) => {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  let user=req.session.user
-  let loginStatus=req.session.logedIn
-  let userId=req.session.userId;
+  if(req.session.logedIn){
+  var user=req.session.user
+  }
   if(req.session.messageAlert){
     console.log("message alert got")
     var messageAlert =req.session.messageAlert
   }
   
   commonHelper.getAnnouncement().then((announcement) => {
-  res.render('common/index', {admin:false,announcement,user,loginStatus,userId,messageAlert});
+  res.render('common/index', {admin:false,announcement,user,messageAlert});
   delete req.session.messageAlert;
  })  
 });
 
-//receive get request for admit mail
-router.get('/mail',(req,res)=>{
-res.render('Student/mail')
+
+
+//post request for user enquery from contact
+
+router.post('/contactForm',(req,res) =>{
+  console.log('hai')
+  console.log(req.body)
+  commonHelper.storeMailes(req.body).then(()=>{
+
+    req.session.messageAlert={
+      message:"Mail send",
+      type:true
+    }
+    res.redirect('/')
+  })
+
 })
 
 
@@ -42,12 +56,9 @@ router.get('/redirecToHome',(req, res, next) => {
 //request for gallery
 router.get('/gallery', function(req, res, next) {
 
-  let user=req.session.user
-  let loginStatus=req.session.logedIn
-  let userId=req.session.userId;
-
+    var user=req.session.user
   commonHelper.getImageGallery().then((imageGallery) => {
-    res.render('common/gallery', { imageGallery,title: 'Boys hostel' ,user,loginStatus,userId});
+    res.render('common/gallery', { imageGallery,title: 'Boys hostel' ,user,admin:false});
 })
 
 });
@@ -58,15 +69,13 @@ router.get('/login', function(req, res, next) {
 
   
   let user=req.session.user
-  let loginStatus=req.session.logedIn
-  let userId=req.session.userId;
-
   let err= req.session.err
   if(req.session.logedIn){
   res.redirect('/')
   }
   else{
-    res.render('common/login-page',{err,user,loginStatus,userId});
+    res.render('common/login-page',{err,user,admin:false});
+    delete req.session.err
   }
 });
 //request for signup  page
@@ -163,12 +172,38 @@ commonHelper.doLogin(req.body).then((response)=>{
       message:"Login Success",
       type:true
     }
+   
+ 
+ 
+ var mailOptions={
+ 
+      from:'sreesanjay7592sachu@gmail.com',
+      to:req.session.user.eMail,
+      subject:'Login success',
+      text:'You have successfully logged in to hostel website'
+ 
+ }
+ 
+ transporter.sendMail(mailOptions,(err,info)=>{
+ if(err){
+      console.log(err)
+      console.log('mail not send')
+ }
+ else{
+      console.log('mail send')
+ }
+ })
+ 
+
+
+
     
     res.redirect('/')
   }
   else{
     req.session.status=response.status;
     req.session.err=response.err;
+
     res.redirect('/login')
   }
 })

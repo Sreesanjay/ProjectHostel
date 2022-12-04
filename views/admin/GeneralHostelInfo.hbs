@@ -1,0 +1,119 @@
+<!--for creating a new hostel-->
+<!-- style for GeneralhostelInfo-->
+<style>
+    .form-submit-container {
+        display: none;
+        margin: 10em 0;
+    }
+
+    .form-submit-container h2,
+    h3 {
+        color: black;
+    }
+
+    .creategeneralInfo h1 {
+        color: black;
+    }
+    .creategeneralInfo .generalInfo{
+        width: 60vw;
+    }
+</style>
+
+
+<section class="creategeneralInfo px-5">
+    <div class="creategeneralInfoHeader py-5">
+        <h1 align="center">Create Hostel</h1>
+    </div>
+    <!--<form action="/admin/GeneralInfo" method="post" enctype="multipart/form-data" class="mb-5">-->
+    <form action="/admin/GeneralInfo" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <section class="generalInfo col-md-8">
+
+            <div class="GeneralInfo-form-container">
+                <div class="form-group">
+                    <label for="Total floors">Hostel Name</label>
+                    <input type="text" name="HostelName" class="form-control" 
+                        placeholder="Enter Hostel name">
+                </div>
+                <div class="form-group">
+                    <label for="Total floors">Collage Name</label>
+                    <input type="text" name="CollageName" class="form-control"
+                        placeholder="Enter collage name">
+                </div>
+                 <div class="form-group">
+                    <label for="Total floors">Logo</label>
+                    <input type="file" name="HostelLogo" class="form-control" 
+                        placeholder="insert hostel logo">
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <label for="Total floors">Hostel Type</label>
+                    <select class="form-select" name="HostelType" aria-label="Default select example">
+                        <option value="Yes">Boys</option>
+                        <option value="No">Girls</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Total floors">Address</label>
+                    <textarea name="HostelAddress" class="form-control text-secondary " id="totalFloor"
+                        placeholder="Enter Hostel Address"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="Total floors">Total floors</label>
+                    <input type="text" name="TotalFloors" class="form-control" id="totalFloor"
+                        placeholder="Enter total floors">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Total floors">Study Room</label>
+                    <select class="form-select" name="StudyRoom" aria-label="Default select example">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Total floors">Mess Facility</label>
+                    <select class="form-select" name="Mess" aria-label="Default select example">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+                </div>
+
+                <button type="reset" class="btn btn-primary">Clear</button>
+                <button type="button" onclick="FormInfoSubmit()" class="btn btn-primary">Submit</button>
+            </div>
+        </section>
+        <section class="img  col-md-4">
+            <img src="#" alt="">
+        </section>
+        </div>
+
+
+        <!--submit button box-->
+        <div class="form-submit-container">
+            <div class="form-submit py-4">
+                <h2 align="center" class="">Are you sure,</h2><br>
+                <h3 align="center" class="mb-5">You want to create a new hostel</h3>
+                <div class="row btn-container d-flex  justify-content-center align-items-center">
+
+                    <div class="reset-btn mt-3 mr-3">
+                        <button type="reset" onclick="FormInfoSubmit()" class="btn btn-primary px-5">No</button>
+                    </div>
+                    <div class="submit-btn mt-3 ml-3">
+                        <button type="submit" class="btn btn-primary px-5">Yes</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </form>
+</section>

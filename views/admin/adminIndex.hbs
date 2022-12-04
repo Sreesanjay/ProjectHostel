@@ -1,0 +1,35 @@
+<!-- admin index page-->
+<!--style for adminIndex-->
+<style>
+.admin-index h1,h2,h3,h4,h5,h6{
+    color: black;
+    }
+
+
+</style>
+
+
+<section class="admin-index">
+    {{#if messageAlert}}
+    {{#if messageAlert.type}}
+    <div class="success-alert alert mb-0">
+        <strong>Success!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    
+    {{else}}
+     <div class="failed-alert alert mb-0">
+        <strong>Failed!</strong>&nbsp{{messageAlert.message}}
+    </div>
+    {{/if}}
+    
+    {{/if}}
+<div class="row">
+    <div class="logo-container col-md-3">
+        <img src="/Logo/hostelInfo._id" alt="logo not found">
+    </div>
+    <div class="name-container col-md-9">
+        <h2>{{hostelInfo.HostelName}}</h2>
+         <h3>{{hostelInfo.CollageName}}</h3>
+    </div>
+</div>
+</section>

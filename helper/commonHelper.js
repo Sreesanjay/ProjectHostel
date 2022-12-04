@@ -120,5 +120,28 @@ module.exports={
      }
     })
 
-  }
+  },
+
+
+//storing common peoples queries 
+
+storeMailes:(data)=>{
+     return new Promise((resolve, reject)=>{
+     db.get().collection('userQuery').insertOne(data).then((status)=>{
+        if(status){
+            resolve()
+        }
+     })
+    })
+}
+
+
+
+
+
+
+
+
+
+
 }
